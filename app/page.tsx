@@ -1,6 +1,6 @@
 const Homepage = () => {
   return (
-    <div className=''>E-COMMERCE-UI</div>
+    <div className=''>E-COMMERCE</div>
   )
 }
 
