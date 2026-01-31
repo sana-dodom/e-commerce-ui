@@ -56,28 +56,28 @@ const categories = [
 ];
 
 const Categories = () => {
-    const searchParameters = useSearchParams()
-    const selectedCategory = searchParameters.get("category")
-    const router= useRouter()
-    const pathname = usePathname()
+  const searchParameters = useSearchParams()
+  const selectedCategory = searchParameters.get("category")
+  const router = useRouter()
+  const pathname = usePathname()
 
-    const handelChange = (value: string) => {
-        const params= new URLSearchParams(searchParameters)
-        params.set("category", value || "all")
-        router.push(`${pathname}?${params.toString()}`, {scroll: false})
-    }
-    console.log(selectedCategory)
+  const handelChange = (value: string) => {
+    const params = new URLSearchParams(searchParameters)
+    params.set("category", value || "all")
+    router.push(`${pathname}?${params.toString()}`, { scroll: false })
+  }
+  console.log(selectedCategory)
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 xl:grid-cols-10 gap-2 bg-gray-100 p-2 rounded-lg mb-4 text-sm">
-            {categories.map(category => (
-                <div className={`flex items-center justify-center gap-2 cursor-pointer px-2 py-1 rounded-md ${category.slug === selectedCategory ? "bg-white" : "text-gray-500"}`} 
-                     key= {category.name}
-                     onClick={() => handelChange(category.slug)}
-                     >
-                    {category.icon}
-                    {category.name}
-                </div>
-            ))}
+      {categories.map(category => (
+        <div className={`flex items-center justify-center gap-2 cursor-pointer px-2 py-1 rounded-md ${category.slug === selectedCategory ? "bg-white" : "text-gray-500"}`}
+          key={category.name}
+          onClick={() => handelChange(category.slug)}
+        >
+          {category.icon}
+          {category.name}
+        </div>
+      ))}
     </div>
   )
 }
