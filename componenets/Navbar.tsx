@@ -25,7 +25,7 @@ const Navbar = () => {
             </Link>
             <Bell className="w-4 h-4 text-gray-500"/>
             <ShoppingBag className="w-4 h-4 text-gray-500"/>
-            <Link href="/login">Sign in</Link>
+            <Link href="/login">Sign</Link>
         </div>
     </div>
   )
