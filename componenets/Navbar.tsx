@@ -10,7 +10,7 @@ const Navbar = () => {
         <Link href="/" className="flex items-center">
             <Image
                 src="/logo.png"
-                alt ="ME"
+                alt ="M"
                 width={36}
                 height={36}
                 className="h-6 w-6 md:h-9 md:w-9 "/>
