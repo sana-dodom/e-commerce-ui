@@ -58,7 +58,8 @@ const ProductCard = ({ product }: { product: ProductType }) => {
                         <div className="flex items-center gap-2">
                             {
                                 product.colors.map(color => (
-                                    <div className={`cursor-pointer border ${producTypes.color === color ? "border-gray-800" : "border-gray-200"} rounded-full p-[1.2px]`}
+                                    <div className={`cursor-pointer border ${producTypes.color === color ? "border-gray-800" : "border-gray-200"} 
+                                                rounded-full p-[1.2px]`}
                                         key={color}
                                         onClick={() => handelProductType({ type: "color", value: color })}>
                                         <div className="w-3.5 h-3.5 rounded-full"
