@@ -66,7 +66,7 @@ const Categories = () => {
     params.set("category", value || "all")
     router.push(`${pathname}?${params.toString()}`, { scroll: false })
   }
-  console.log(selectedCategory)
+  
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 xl:grid-cols-10 gap-2 bg-gray-100 p-2 rounded-lg mb-4 text-sm">
       {categories.map(category => (
