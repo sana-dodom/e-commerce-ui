@@ -1,8 +1,9 @@
 "use client"
 
 import { CartItemsType } from "@/types"
+import { ArrowRight } from "lucide-react"
 import { useSearchParams } from "next/navigation"
-import { useRouter } from "next/router"
+import { useRouter } from "next/navigation"
 import { Suspense } from "react"
 
 const steps = [
@@ -79,13 +80,15 @@ const cartItems:CartItemsType = [
 
 const CartPage = () => {
     
-const searchParams = useSearchParams()
-// const router = useRouter()
+// const searchParams = useSearchParams()
+const router = useRouter()
 
-const activeStep = parseInt(searchParams.get("step") || "1")
+// const activeStep = parseInt(searchParams.get("step") || "1")
+
+const activeStep = 1
 
   return (
-    <Suspense>
+    
     <div className="flex flex-col items-center justify-center gap-8 mt-12">
         {/* TITLE */}
             <h1 className="text-2xl font-medium">Your Shopping Cart</h1>
@@ -110,8 +113,41 @@ const activeStep = parseInt(searchParams.get("step") || "1")
                     ))
                 }
             </div>
+            {/* STEPS & DETAILS */}
+            <div className="w-full flex flex-col lg:flex-row gap-16">
+                 {/* STEPS */}
+                <div className="w-full lg:w-7/10 flex flex-col gap-8 shadow-lg border border-gray-100 rounded-lg p-8"></div>
+                {/* DETAILS */}
+                <div className="w-full lg:w-5/10 flex flex-col gap-8 shadow-lg border border-gray-100 rounded-lg p-8">
+                    <h2 className="font-semibold">Cart Details</h2>
+                    <div className="flex flex-col gap-4">
+                        <div className="flex justify-between text-sm ">
+                            <p className="text-sm text-gray-500">Subtotal</p>
+                            <p className="font-medium">${cartItems.reduce((acc, item)=> acc+ item.price*item.quantity,0).toFixed(2)}</p>
+                        </div>
+                        <div className="flex justify-between text-sm ">
+                            <p className="text-sm text-gray-500">Discount(10%)</p>
+                            <p className="font-medium">-$10</p>
+                        </div>
+                        <div className="flex justify-between text-sm ">
+                            <p className="text-sm text-gray-500">Shipping Fee</p>
+                            <p className="font-medium">$10</p>
+                        </div>
+                    </div>
+                    <hr className="border-gray-200"/>
+                    <div className="flex justify-between text-sm ">
+                            <p className="text-sm text-gray-800 font-semibold">Total</p>
+                            <p className="font-medium">${cartItems.reduce((acc, item)=> acc+ item.price*item.quantity,0).toFixed(2)}</p>
+                    </div>
+                    <button onClick={() => router.push("/cart?step=2", {scroll:false})} className="w-full bg-gray-800 hover:bg-gray-900 transition-all duration-300 text-white p-2 rounded-lg cursor-pointer flex items-center justify-center gap-2">
+                        Continue
+                        <ArrowRight/>
+                    </button>
+                </div>
+            </div>
+           
     </div>
-     </Suspense>
+   
   )
  
 }
