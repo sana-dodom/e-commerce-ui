@@ -7,7 +7,15 @@ export type ProductType = {
     sizes: string[];
     colors: string[];
     images: Record<string, string>;
-    
-}
 
-export type ProductsType = ProductType[]
+};
+
+export type ProductsType = ProductType[];
+
+export type CartItemType = ProductType & {
+    quantity: number;
+    selectedSize: string;
+    selectedClor: string;
+};
+
+export type CartItemsType = CartItemType[]
