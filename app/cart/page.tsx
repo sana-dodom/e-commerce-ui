@@ -6,23 +6,24 @@ import { useSearchParams } from "next/navigation"
 import { useRouter } from "next/navigation"
 import { Suspense } from "react"
 
+
 const steps = [
     {
-        id:1,
-        title:"Shopping Cart",
+        id: 1,
+        title: "Shopping Cart",
     },
     {
-        id:2,
-        title:"Shipping Adress",
+        id: 2,
+        title: "Shipping Adress",
     },
     {
-        id:3,
-        title:"Payment Method",
+        id: 3,
+        title: "Payment Method",
     }
 ]
 
 // TEMPORERY
-const cartItems:CartItemsType = [
+const cartItems: CartItemsType = [
     {
         id: 1,
         name: "Adidas CoreFit T-Shirt",
@@ -39,8 +40,8 @@ const cartItems:CartItemsType = [
             green: "/products/1gr.png",
         },
         quantity: 1,
-        selectedSize:"m",
-        selectedClor:"gray",
+        selectedSize: "m",
+        selectedClor: "gray",
     },
     {
         id: 2,
@@ -54,8 +55,8 @@ const cartItems:CartItemsType = [
         colors: ["gray", "green"],
         images: { gray: "/products/2g.png", green: "/products/2gr.png" },
         quantity: 1,
-        selectedSize:"l",
-        selectedClor:"gray",
+        selectedSize: "l",
+        selectedClor: "gray",
     },
     {
         id: 3,
@@ -73,41 +74,37 @@ const cartItems:CartItemsType = [
             black: "/products/3bl.png",
         },
         quantity: 1,
-        selectedSize:"l",
-        selectedClor:"black",
+        selectedSize: "l",
+        selectedClor: "black",
     },
 ]
 
-const CartPage = () => {
-    
-// const searchParams = useSearchParams()
-const router = useRouter()
+const CartContent = () => {
+    const searchParams = useSearchParams()
+    const router = useRouter()
 
-// const activeStep = parseInt(searchParams.get("step") || "1")
+    const activeStep = parseInt(searchParams.get("step") || "1")
 
-const activeStep = 1
+    // const activeStep = 1
 
-  return (
-    
-    <div className="flex flex-col items-center justify-center gap-8 mt-12">
-        {/* TITLE */}
+    return (
+
+        <div className="flex flex-col items-center justify-center gap-8 mt-12">
+            {/* TITLE */}
             <h1 className="text-2xl font-medium">Your Shopping Cart</h1>
-        {/* STEPS*/}
+            {/* STEPS*/}
             <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
                 {
                     steps.map(step => (
-                        <div className={`flex items-center gap-2 border-b-2 pb-4 ${
-                                    step.id === activeStep ? "border-gray-800": "border-gray-200"
-                                }`}
-                                key={step.id}>
-                            <div className={`w-6 h-6 rounded-full text-white p-4 flex items-center justify-center ${
-                                    step.id === activeStep ? "bg-gray-800": "bg-gray-400"
+                        <div className={`flex items-center gap-2 border-b-2 pb-4 ${step.id === activeStep ? "border-gray-800" : "border-gray-200"
+                            }`}
+                            key={step.id}>
+                            <div className={`w-6 h-6 rounded-full text-white p-4 flex items-center justify-center ${step.id === activeStep ? "bg-gray-800" : "bg-gray-400"
                                 }`}
                             >
                                 {step.id}
                             </div>
-                            <p className={`text-sm font-medium ${
-                                    step.id === activeStep ? "text-gray-800": "text-gray-400"
+                            <p className={`text-sm font-medium ${step.id === activeStep ? "text-gray-800" : "text-gray-400"
                                 }`}>{step.title}</p>
                         </div>
                     ))
@@ -115,7 +112,7 @@ const activeStep = 1
             </div>
             {/* STEPS & DETAILS */}
             <div className="w-full flex flex-col lg:flex-row gap-16">
-                 {/* STEPS */}
+                {/* STEPS */}
                 <div className="w-full lg:w-7/10 flex flex-col gap-8 shadow-lg border border-gray-100 rounded-lg p-8"></div>
                 {/* DETAILS */}
                 <div className="w-full lg:w-5/10 flex flex-col gap-8 shadow-lg border border-gray-100 rounded-lg p-8">
@@ -123,7 +120,7 @@ const activeStep = 1
                     <div className="flex flex-col gap-4">
                         <div className="flex justify-between text-sm ">
                             <p className="text-sm text-gray-500">Subtotal</p>
-                            <p className="font-medium">${cartItems.reduce((acc, item)=> acc+ item.price*item.quantity,0).toFixed(2)}</p>
+                            <p className="font-medium">${cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)}</p>
                         </div>
                         <div className="flex justify-between text-sm ">
                             <p className="text-sm text-gray-500">Discount(10%)</p>
@@ -134,22 +131,29 @@ const activeStep = 1
                             <p className="font-medium">$10</p>
                         </div>
                     </div>
-                    <hr className="border-gray-200"/>
+                    <hr className="border-gray-200" />
                     <div className="flex justify-between text-sm ">
-                            <p className="text-sm text-gray-800 font-semibold">Total</p>
-                            <p className="font-medium">${cartItems.reduce((acc, item)=> acc+ item.price*item.quantity,0).toFixed(2)}</p>
+                        <p className="text-sm text-gray-800 font-semibold">Total</p>
+                        <p className="font-medium">${cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)}</p>
                     </div>
-                    <button onClick={() => router.push("/cart?step=2", {scroll:false})} className="w-full bg-gray-800 hover:bg-gray-900 transition-all duration-300 text-white p-2 rounded-lg cursor-pointer flex items-center justify-center gap-2">
+                    <button onClick={() => router.push("/cart?step=2", { scroll: false })} className="w-full bg-gray-800 hover:bg-gray-900 transition-all duration-300 text-white p-2 rounded-lg cursor-pointer flex items-center justify-center gap-2">
                         Continue
-                        <ArrowRight/>
+                        <ArrowRight />
                     </button>
                 </div>
             </div>
-           
-    </div>
-   
-  )
- 
+
+        </div>
+
+    )
+
 }
 
-export default CartPage
+// export default CartPage
+export default function CartPage() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <CartContent />
+        </Suspense>
+    );
+}
