@@ -3,6 +3,7 @@
 import { CartItemsType } from "@/types"
 import { useSearchParams } from "next/navigation"
 import { useRouter } from "next/router"
+import { Suspense } from "react"
 
 const steps = [
     {
@@ -77,12 +78,14 @@ const cartItems:CartItemsType = [
 ]
 
 const CartPage = () => {
+    
 const searchParams = useSearchParams()
 // const router = useRouter()
 
 const activeStep = parseInt(searchParams.get("step") || "1")
 
   return (
+    <Suspense>
     <div className="flex flex-col items-center justify-center gap-8 mt-12">
         {/* TITLE */}
             <h1 className="text-2xl font-medium">Your Shopping Cart</h1>
@@ -108,7 +111,9 @@ const activeStep = parseInt(searchParams.get("step") || "1")
                 }
             </div>
     </div>
+     </Suspense>
   )
+ 
 }
 
 export default CartPage
