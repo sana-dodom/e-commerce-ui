@@ -1,6 +1,7 @@
 "use client"
 
 import PaymentForm from "@/componenets/PaymentForm"
+import ShippingForm from "@/componenets/ShippingForm"
 import { CartItemsType } from "@/types"
 import { ArrowRight, Trash2 } from "lucide-react"
 import Image from "next/image"
@@ -81,13 +82,21 @@ const cartItems: CartItemsType = [
     },
 ]
 
+type FormData = {
+  name: string;
+  email: string;
+  phone: string;
+  adress: string;
+  city: string;
+};
+
 const CartContent = () => {
     const searchParams = useSearchParams()
     const router = useRouter()
 
     const activeStep = parseInt(searchParams.get("step") || "1")
 
-    const [ShippingForm, setShippingForm] = useState(null)
+    const [shippingForm, setshippingForm] = useState<FormData | null>(null)
 
     return (
 
@@ -147,8 +156,8 @@ const CartContent = () => {
                                 ))
                             ) :
                         activeStep === 2 ?
-                            <ShippingForm setShippingForm = {setShippingForm}/> :
-                        (activeStep === 3 && ShippingForm ? <PaymentForm/> :
+                            <ShippingForm setShippingForm={setshippingForm}/> :
+                        (activeStep === 3 && shippingForm ? <PaymentForm/> :
                             <p className="test-sm text-gray-500">Please filling in shippin form to continue.</p>
                     )}
                 </div>
