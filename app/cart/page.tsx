@@ -83,11 +83,11 @@ const cartItems: CartItemsType = [
 ]
 
 type FormData = {
-  name: string;
-  email: string;
-  phone: string;
-  adress: string;
-  city: string;
+    name: string;
+    email: string;
+    phone: string;
+    adress: string;
+    city: string;
 };
 
 const CartContent = () => {
@@ -99,7 +99,6 @@ const CartContent = () => {
     const [shippingForm, setshippingForm] = useState<FormData | null>(null)
 
     return (
-
         <div className="flex flex-col items-center justify-center gap-8 mt-12">
             {/* TITLE */}
             <h1 className="text-2xl font-medium">Your Shopping Cart</h1>
@@ -133,7 +132,7 @@ const CartContent = () => {
                                     <div className="flex items-center justify-between" key={item.id}>
                                         {/* IMAGE & DETAILS */}
                                         <div className="flex gap-8">
-                                             {/* IMAGES */}
+                                            {/* IMAGES */}
                                             <div className="relative w-32 h-32 overflow-hidden rounded-lg bg-gray-50">
                                                 <Image src={item.images[item.selectedClor]} alt={item.name} fill className="object-contain"></Image>
                                             </div>
@@ -150,16 +149,16 @@ const CartContent = () => {
                                         </div>
                                         {/* DELETE BUTTON */}
                                         <button className="w-8 h-8 rounded-full bg-red-100 hover:bg-red-200 transition-all duration-200 text-red-400 flex items-center justify-center">
-                                            <Trash2 className="w-3 h-3"/>
+                                            <Trash2 className="w-3 h-3" />
                                         </button>
                                     </div>
                                 ))
                             ) :
-                        activeStep === 2 ?
-                            <ShippingForm setShippingForm={setshippingForm}/> :
-                        (activeStep === 3 && shippingForm ? <PaymentForm/> :
-                            <p className="test-sm text-gray-500">Please filling in shippin form to continue.</p>
-                    )}
+                            activeStep === 2 ?
+                                <ShippingForm setShippingForm={setshippingForm} /> :
+                                (activeStep === 3 && shippingForm ? <PaymentForm /> :
+                                    <p className="test-sm text-gray-500">Please filling in shippin form to continue.</p>
+                                )}
                 </div>
                 {/* DETAILS */}
                 <div className="w-full lg:w-5/10 flex flex-col gap-8 shadow-lg border border-gray-100 rounded-lg p-8 h-max ">
@@ -183,11 +182,11 @@ const CartContent = () => {
                         <p className="text-sm text-gray-800 font-semibold">Total</p>
                         <p className="font-medium">${cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)}</p>
                     </div>
-                    {activeStep === 1 && 
-                    <button onClick={() => router.push("/cart?step=2", { scroll: false })} className="w-full bg-gray-800 hover:bg-gray-900 transition-all duration-300 text-white p-2 rounded-lg cursor-pointer flex items-center justify-center gap-2">
-                        Continue
-                        <ArrowRight />
-                    </button>}
+                    {activeStep === 1 &&
+                        <button onClick={() => router.push("/cart?step=2", { scroll: false })} className="w-full bg-gray-800 hover:bg-gray-900 transition-all duration-300 text-white p-2 rounded-lg cursor-pointer flex items-center justify-center gap-2">
+                            Continue
+                            <ArrowRight />
+                        </button>}
                 </div>
             </div>
 

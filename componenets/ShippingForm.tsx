@@ -6,14 +6,11 @@ import { SubmitHandler, useForm } from "react-hook-form"
 
 const ShippingForm = ({setShippingForm}:{setShippingForm:(data:ShippingFormInputs) => void}) => {
     const { register, handleSubmit, formState: { errors } } = useForm<ShippingFormInputs>(
-        {
-            resolver: zodResolver(shippingFormSchema),
-
-        }
+        {resolver: zodResolver(shippingFormSchema)}
     )
     const router = useRouter();
 
-    const handeleShippingForm:SubmitHandler<ShippingFormInputs> = (data) => {
+    const handeleShippingForm:SubmitHandler<ShippingFormInputs> = (data) => {   
         setShippingForm(data)
         router.push("/cart?step=3", {scroll: false})
     }

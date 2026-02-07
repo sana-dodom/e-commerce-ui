@@ -1,4 +1,4 @@
-import { PaymentFormInputs, paymentFormSchema} from "@/types"
+import { PaymentFormInputs, paymentFormSchema } from "@/types"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { ArrowRight, ShoppingCart } from "lucide-react"
 import Image from "next/image"
@@ -10,8 +10,8 @@ const PaymentgForm = () => {
         { resolver: zodResolver(paymentFormSchema) }
     )
     const router = useRouter();
-    const handelePaymentForm:SubmitHandler<PaymentFormInputs> = (data) => {
-       
+    const handelePaymentForm: SubmitHandler<PaymentFormInputs> = (data) => {
+
     }
 
     return (
@@ -45,9 +45,9 @@ const PaymentgForm = () => {
                 )}
             </div>
             <div className="flex items-center gap-2 mt-4">
-                <Image src = "/klarna.png" alt="klarna" width={50} height={25} className="rounded-md"/>
-                <Image src = "/cards.png" alt="klarna" width={50} height={25} className="rounded-md"/>
-                <Image src = "/stripe.png" alt="klarna" width={50} height={25} className="rounded-md"/>
+                <Image src="/klarna.png" alt="klarna" width={50} height={25} className="rounded-md" />
+                <Image src="/cards.png" alt="klarna" width={50} height={25} className="rounded-md" />
+                <Image src="/stripe.png" alt="klarna" width={50} height={25} className="rounded-md" />
             </div>
             <button type="submit" className="w-full bg-gray-800 hover:bg-gray-900 transition-all duration-300 text-white p-2 rounded-lg cursor-pointer flex items-center justify-center gap-2">
                 Checkout

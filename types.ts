@@ -17,7 +17,7 @@ export type ProductsType = ProductType[];
 export type CartItemType = ProductType & {
     quantity: number;
     selectedSize: string;
-    selectedClor: string;
+    selectedColor: string;
 };
 
 export type CartItemsType = CartItemType[]
@@ -29,8 +29,7 @@ export const shippingFormSchema = z.object({
         .string()
         .min(7, "Phone number must be between 7 and 10 digits!")
         .max(10, "Phone number must be between 7 and 10 digits!")
-        .regex(/^\d+$/, "Phone number must contain onlynumbers"),
-    
+        .regex(/^\d+$/, "Phone number must contain onlynumbers"),   
     adress: z.string().min(1, "Adress is required"),
     city: z.string().min(1, "City is required"),
     
@@ -48,3 +47,14 @@ export const paymentFormSchema = z.object({
 })
 
 export type PaymentFormInputs = z.infer<typeof paymentFormSchema>
+
+export type CartStoreStateType = {
+    cart: CartItemsType
+}
+
+export type CartStoreActionsType = {
+    addToCart: (product: CartItemType) => void;
+    removeFromCart: (product: CartItemType) => void;
+    clearCart: () => void
+
+}
