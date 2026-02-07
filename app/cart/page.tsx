@@ -127,7 +127,7 @@ const CartContent = () => {
                             (
                                 cart.map((item) => (
                                     // SINGLE CART ITEM
-                                    <div className="flex items-center justify-between" key={item.id}>
+                                    <div className="flex items-center justify-between" key={item.id + item.selectedColor + item.selectedSize}>
                                         {/* IMAGE & DETAILS */}
                                         <div className="flex gap-8">
                                             {/* IMAGES */}
