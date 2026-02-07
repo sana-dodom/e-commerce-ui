@@ -6,6 +6,7 @@ import { ShoppingBag, ShoppingCart } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
+import { toast } from "react-toastify"
 
 
 const ProductCard = ({ product }: { product: ProductType }) => {
@@ -28,7 +29,7 @@ const ProductCard = ({ product }: { product: ProductType }) => {
             selectedSize: producTypes.size,
             selectedColor: producTypes.color,
         })
-        
+        toast.success("Product Added To Cart")
     };
     return (
         <div className="shadow-lg rounded-lg overflow-hidden">
