@@ -44,7 +44,7 @@ const cartItems: CartItemsType = [
         },
         quantity: 1,
         selectedSize: "m",
-        selectedClor: "gray",
+        selectedColor: "gray",
     },
     {
         id: 2,
@@ -59,7 +59,7 @@ const cartItems: CartItemsType = [
         images: { gray: "/products/2g.png", green: "/products/2gr.png" },
         quantity: 1,
         selectedSize: "l",
-        selectedClor: "gray",
+        selectedColor: "gray",
     },
     {
         id: 3,
@@ -78,7 +78,7 @@ const cartItems: CartItemsType = [
         },
         quantity: 1,
         selectedSize: "l",
-        selectedClor: "black",
+        selectedColor: "black",
     },
 ]
 
@@ -134,7 +134,7 @@ const CartContent = () => {
                                         <div className="flex gap-8">
                                             {/* IMAGES */}
                                             <div className="relative w-32 h-32 overflow-hidden rounded-lg bg-gray-50">
-                                                <Image src={item.images[item.selectedClor]} alt={item.name} fill className="object-contain"></Image>
+                                                <Image src={item.images[item.selectedColor]} alt={item.name} fill className="object-contain"></Image>
                                             </div>
                                             {/* ITEM DETAILS */}
                                             <div className="flex flex-col justify-between">
@@ -142,7 +142,7 @@ const CartContent = () => {
                                                     <p className="text-sm font-medium">{item.name}</p>
                                                     <p className="text-xs text-gray-500">Quantity:{" "}{item.quantity} </p>
                                                     <p className="text-xs text-gray-500">Size:{" "}{item.selectedSize}</p>
-                                                    <p className="text-xs text-gray-500">Color:{" "}{item.selectedClor}</p>
+                                                    <p className="text-xs text-gray-500">Color:{" "}{item.selectedColor}</p>
                                                 </div>
                                                 <p>${item.price.toFixed(2)}</p>
                                             </div>
