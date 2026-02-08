@@ -5,6 +5,7 @@ const ProductsPage = async ({searchParams}:{searchParams:Promise<{category:strin
     // searchParams est une promesse qui va retourner :{ category: "shoes" | ....}
     
   const category = (await searchParams).category
+  
   return (
     <div>
         <ProductList category={category} params="products"/>
