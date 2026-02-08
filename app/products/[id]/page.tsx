@@ -36,7 +36,7 @@ const ProductPage = async ({ params, searchParams }: { params: { id: string }; s
             <div className="relative aspect-2/3 w-full lg:w-5/12">
                 <Image src={product.images[selectedColor]} alt={product.name} fill className="object-contain rounded-md" />
             </div>
-            
+
 
             {/* PRODUCT DETAILS SECTION */}
             <div className="w-full lg:w-7/12 flex flex-col gap-4">
@@ -49,7 +49,7 @@ const ProductPage = async ({ params, searchParams }: { params: { id: string }; s
 
                 {/* Product Price */}
                 <h2 className="text-2xl font-semibold">${product.price.toFixed(2)}</h2>
-                <ProductInteraction/>
+                <ProductInteraction product={product} selectedSize={selectedSize} selectedColor={selectedColor}/>
                 {/* Payment Icons */}
                 <div className="flex items-center gap-2 mt-4">
                     <Image
@@ -73,9 +73,17 @@ const ProductPage = async ({ params, searchParams }: { params: { id: string }; s
                         height={25}
                         className="rounded-md"
                     />
-
                 </div>
+                <p className="text-gray-500 text-xs">
+                    By clicking Pay Now, you agree to our{" "}
+                    <span className="underline hover:text-black">Terms & Conditions</span>{" "}
+                    and <span className="underline hover:text-black">Privacy Policy</span>
+                    . You authorize us to charge your selected payment method for the
+                    total amount shown. All sales are subject to our return and{" "}
+                    <span className="underline hover:text-black">Refund Policies</span>.
+                </p>
             </div>
+
         </div>
     )
 }
