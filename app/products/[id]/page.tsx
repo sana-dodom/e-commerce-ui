@@ -3,6 +3,7 @@
 import ProductInteraction from "@/componenets/ProductInteraction";
 import { ProductType } from "@/types"
 import Image from "next/image";
+import { title } from "process";
 
 const product: ProductType =
 {
@@ -22,8 +23,12 @@ const product: ProductType =
     },
 };
 
-
-
+export const generateMetadata = async ({ params }: { params: { id: string } }) => {
+    return {
+        title: product.name,
+        description: product.description,
+    }
+}
 const ProductPage = async ({ params, searchParams }: { params: { id: string }; searchParams: { color?: string; size?: string } }) => {
 
     const { size, color } = (await searchParams)
@@ -49,7 +54,7 @@ const ProductPage = async ({ params, searchParams }: { params: { id: string }; s
 
                 {/* Product Price */}
                 <h2 className="text-2xl font-semibold">${product.price.toFixed(2)}</h2>
-                <ProductInteraction product={product} selectedSize={selectedSize} selectedColor={selectedColor}/>
+                <ProductInteraction product={product} selectedSize={selectedSize} selectedColor={selectedColor} />
                 {/* Payment Icons */}
                 <div className="flex items-center gap-2 mt-4">
                     <Image
