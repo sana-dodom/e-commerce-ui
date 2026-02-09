@@ -1,18 +1,33 @@
 "use client"
 
 import { ProductType } from "@/types"
+import { Minus, Plus, ShoppingCart } from "lucide-react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import { useState } from "react";
 
 const ProductInteraction = ({ product, selectedSize, selectedColor }: { product: ProductType, selectedSize: string, selectedColor: string }) => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
+  const [quantity, setQuantity] = useState(1)
+
   const handelTypeChange = (type: string, value: string) => {
     const params = new URLSearchParams(searchParams.toString())
     params.set(type, value)
     router.push(`${pathname}?${params.toString()}`, { scroll: false })
   }
+
+  const handelQuantityChange = (type: "decrement" | "increment") => {
+    if (type === "increment") {
+      setQuantity(prev => prev + 1)
+    } else {
+      if (quantity > 1) {
+        setQuantity(prev => prev - 1)
+      }
+    }
+  }
+
   return (
     <div className="flex flex-col gap-4 mt-4">
       {/* SIZE */}
@@ -35,10 +50,46 @@ const ProductInteraction = ({ product, selectedSize, selectedColor }: { product:
 
       </div>
       {/* COLOR */}
-      <div className="flex flex-col gap-2 text-sm"></div>
+      <span className="text-gray-500">Color</span>
+      <div className="flex flex-col gap-2 text-sm">
+        <div className="flex items-center gap-2">
+          {
+            product.colors.map((color) => (
+              <div className={`cursor-pointer border p-0.5 ${selectedColor === color ? "border-gray-300" : "border-white"}`}
+                key={color}
+                onClick={() => handelTypeChange("color", color)}>
+                <div className="w-6 h-6" style={{ backgroundColor: color }} />
+              </div>
+            ))
+          }
+        </div>
+      </div>
       {/* QUANTITY */}
-      <div className="flex flex-col gap-2 text-sm"></div>
+      <div className="flex flex-col gap-2 text-sm">
+        <span className="text-gray-500">Quantity</span>
+        <div className="flex items-center gap-2">
+          <button className="cursor-pointer border border-gray-300 p-1" onClick={() => handelQuantityChange("decrement")}>
+            <Minus className="w-4 h-4" />
+          </button>
+          <button className="">
+            {quantity}
+          </button>
+          <button className="cursor-pointer border border-gray-300 p-1" onClick={() => handelQuantityChange("increment")}>
+            <Plus className="w-4 h-4" />
+          </button>
 
+        </div>
+
+
+      </div>
+      <button className="bg-gray-800 text-white shadow-lg px-4 py-2 gap-4 flex items-center justify-center rounded-lg cursor-pointer text-sm font-semibold">
+        <Plus className="w-4 h-4" />
+        Add to cart
+      </button>
+      <button className="ring-1 ring-gray-400 shadow-lg text-gray-800 px-4 py-2 flex gap-4 items-center justify-center rounded-lg cursor-pointer text-sm font-semibold">
+        <ShoppingCart className="w-4 h-4" />
+        Buy this item
+      </button>
     </div>
   )
 }
